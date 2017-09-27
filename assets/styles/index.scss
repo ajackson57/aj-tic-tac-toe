@@ -1,2 +1,22 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+.grid-space {
+  margin: 0 auto;
+  width: 100%;
+  // border-collapse: separate;
+}
+
+.grid-table {
+  display: table;
+  margin: 0 auto;
+  // width: 100%;
+  // border-collapse: separate;
+}
+
+.cell {
+  // border-collapse: separate;
+  border-style: solid;
+  empty-cells: show;
+  padding: 50px;
+}
