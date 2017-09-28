@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic-Tac-Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags unless you know what you are doing -->
@@ -38,6 +38,37 @@
     </div>
     <form id="save-game">
       <button type="submit" class="button">Save Game</button>
+    </form>
+    <form id="sign-up">
+      <fieldset>
+        <legend>Sign up!</legend>
+        <input name="credentials[email]" type="text" placeholder="Enter Email">
+        <input name="credentials[password]" type="password" placeholder="Enter Password">
+        <input name="credentials[password_confirmation]" type="password" placeholder="Enter Password Confirmation">
+        <input type="submit" name="submit" value="Sign up!">
+      </fieldset>
+    </form>
+    <form id="sign-in">
+      <fieldset>
+        <legend>Sign in!</legend>
+        <input name="credentials[email]" type="text" placeholder="Enter Email">
+        <input name="credentials[password]" type="password" placeholder="Enter Password">
+        <input type="submit" name="submit" value="Sign in!">
+      </fieldset>
+    </form>
+    <form id="change-password">
+      <fieldset>
+        <legend>Change password!</legend>
+        <input name="passwords[old]" type="password" placeholder="Enter old password">
+        <input name="passwords[new]" type="password" placeholder="Enter new password">
+        <input type="submit" name="submit" value="Change Password!">
+      </fieldset>
+    </form>
+    <form id="sign-out">
+      <fieldset>
+        <legend>Sign Out!</legend>
+        <input type="submit" name="submit" value="Sign Out!">
+      </fieldset>
     </form>
     </body>
 </html>

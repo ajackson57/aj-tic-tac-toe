@@ -18,8 +18,12 @@ const game = require('./games/game-board')
 // const store = require('./store')
 
 // On document ready
+const authEvents = require('./auth/events-auth')
+
+// On document ready
 $(() => {
   game.inistializeGame('Bob', 'bob@gmail.com')
   $('#game-board').on('click', gameEvents.onCellClick)
   $('#save-game').on('submit', gameEvents.onSaveGame)
+  authEvents.addHandlers()
 })
