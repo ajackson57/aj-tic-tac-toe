@@ -12,31 +12,31 @@ const signUpFailure = function (error) {
 const signInSuccess = function (data) {
   console.log('Data from SIS :', data)
   store.user = data.user
-  $('#message').text('Signed in succesfully')
+  $('#content').text('Signed in succesfully')
 }
 
 const signInFailure = function (error) {
   console.error(error)
-  $('#message').text('Error on sign-in')
+  $('#content').text('Error on sign-in')
 }
 const changePasswordSuccess = function (data) {
   console.log('Data from CPW :', data)
-  $('#message').text('Password changed succesfully')
+  $('#content').text('Password changed succesfully')
 }
 
 const changePasswordFailure = function (error) {
   console.error(error)
-  $('#message').text('Error on password change')
+  $('#content').text('Error on password change')
 }
 const signOutSuccess = function (data) {
   console.log('Data from SOS :', data)
   store.user = {}
-  $('#message').text('Signed out succesfully')
+  $('#content').text('Signed out succesfully')
 }
 
 const signOutFailure = function (error) {
   console.error(error)
-  $('#message').text('Error sign out')
+  $('#content').text('Error sign out')
 }
 module.exports = {
   signUpSuccess,

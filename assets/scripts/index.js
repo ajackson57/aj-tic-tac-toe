@@ -14,7 +14,7 @@ $(() => {
 require('./example')
 
 const gameEvents = require('./games/events-games')
-const game = require('./games/game-board')
+// const game = require('./games/game-board')
 // const store = require('./store')
 
 // On document ready
@@ -22,8 +22,7 @@ const authEvents = require('./auth/events-auth')
 
 // On document ready
 $(() => {
-  game.inistializeGame('Bob', 'bob@gmail.com')
-  $('#game-board').on('click', gameEvents.onCellClick)
-  $('#save-game').on('submit', gameEvents.onSaveGame)
+  // game.inistializeGame(game.Game())
   authEvents.addHandlers()
+  gameEvents.addHandlers()
 })
