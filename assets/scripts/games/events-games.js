@@ -12,11 +12,15 @@ const getFormFields = require('../../../lib/get-form-fields')
 
 const onCellClick = function (event) {
   event.preventDefault()
-  const mapArray = [[0, 1, 2], [3, 4, 5], [6, 7, 9]]
+  const mapArray = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
   // console.log('Cell event: ', event)
   // console.log('Cell index:', event.target.cellIndex)
   // console.log('Row index:', event.target.parentElement.rowIndex)
   // console.log('Cell value:', event.target.value)
+  if (game.currentGame.over) {
+    $('#content').text('Game over please create a new game!')
+    return
+  }
   const rowIndex = event.target.parentElement.rowIndex
   const colIndex = event.target.cellIndex
   if (event.target.textContent === 'x' || event.target.textContent === 'o') {
@@ -29,27 +33,38 @@ const onCellClick = function (event) {
   } else {
     event.target.textContent = 'o'
   }
-  if (game.currentGame.checkForWinner(game.currentGame.currentPlayer) ===
-      game.currentGame.currentPlayer) {
-    $('#content').text('We have a winner and its player: ' +
-                       game.currentGame.currentPlayer)
-    game.currentGame.updateGame(mapArray[rowIndex][colIndex], true)
-    return
-  }
+  // refactor code so it first updates and as part of the update check for over,
+  // either a winner or a draw
+  // if (game.currentGame.checkForWinner(game.currentGame.currentPlayer) ===
+  //     game.currentGame.currentPlayer) {
+  //   $('#content').text('We have a winner and its player: ' +
+  //                      game.currentGame.currentPlayer)
+  //   game.currentGame.updateGame(mapArray[rowIndex][colIndex], true)
+  //   return
+  // }
   // console.log('Current player before toggl')
-  game.currentGame.updateGame(mapArray[rowIndex][colIndex], true)
-  game.currentGame.togglePlayer()
-  // gamesApi.index()
+  const results = game.currentGame.updateGame(mapArray[rowIndex][colIndex], event.target.textContent)
+  if (game.currentGame.over && results === 'draw') {
+    ui.moveFeedback('Game over it was a draw')
+  } else if (game.currentGame.over) {
+    ui.moveFeedback('Game over and the winner is ' + results)
+  } else {
+    game.currentGame.togglePlayer()
+    ui.moveFeedback('It\'s player' + game.currentGame.currentPlayer + '\'s turn')
+  }
+  // gamesApi.index(
   //   .then(gamesUi.onSuccess)
   //   .catch(gamesUi.onError)
 }
 
-const onSaveGame = function (event) {
+const onGetStatistics = function (event) {
   event.preventDefault()
-  console.log('Caught save event')
-  api.saveGame()
-   .then(ui.saveGameSuccess)
-   .catch(ui.saveGameFailure)
+  console.log('Caught get statistics event')
+  game.allGames.getStatistics()
+  ui.displayStatistics()
+  // api.saveGame()
+  //  .then(ui.getStatisticsSuccess)
+  //  .catch(ui.getStatisticsFailure)
 }
 const onGetGames = function (event) {
   event.preventDefault()
@@ -79,7 +94,7 @@ const onGetGame = function (event) {
 
 const addHandlers = function () {
   $('#game-board').on('click', onCellClick)
-  $('#save-game').on('click', onSaveGame)
+  $('#get-statistics').on('click', onGetStatistics)
   $('#get-games').on('click', onGetGames)
   $('#new-game').on('click', onNewGame)
   $('#get-game').on('submit', onGetGame)

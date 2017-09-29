@@ -6,7 +6,7 @@ const gameBoard = require('./game-board')
 const getGamesSuccess = function (data) {
   console.log('Data from get games :', data)
   $('#content').text('Get games succesfull')
-  currentBoard.allGames = data.games
+  currentBoard.allGames = new gameBoard.Games(data.games)
 }
 
 const getGamesFailure = function (error) {
@@ -40,6 +40,29 @@ const saveGameFailure = function (error) {
   console.error(error)
   $('#content').text('Error on save game: ' + error)
 }
+const getStatisticsSuccess = function (data) {
+  console.log('Data from save game :', data)
+  $('#content').text('Save game succesfull')
+}
+
+const getStatisticsFailure = function (error) {
+  console.error(error)
+  $('#content').text('Error on save game: ' + error)
+}
+
+const displayStatistics = function () {
+  const games = currentBoard.allGames
+  $('#content').html('Game Statistics<br/>' + 'Total Games: ' +
+  games.totalGames + '<br/>Completed Games: ' + games.completedGames +
+  '<br/>Incomplete Games: ' + games.incompleteGames +
+  '<br/>Games Played to Draw: ' + games.drawGames +
+  '<br/>Games won by playerX: ' + games.xWon +
+  '<br/>Games won by playerY: ' + games.yWon)
+}
+
+const moveFeedback = function (feedback) {
+  $('#content').text(feedback)
+}
 
 module.exports = {
   getGamesSuccess,
@@ -49,5 +72,9 @@ module.exports = {
   newGameSuccess,
   newGameFailure,
   saveGameSuccess,
-  saveGameFailure
+  saveGameFailure,
+  getStatisticsSuccess,
+  getStatisticsFailure,
+  displayStatistics,
+  moveFeedback
 }

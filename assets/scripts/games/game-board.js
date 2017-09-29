@@ -50,6 +50,30 @@ const checkForWinner = function (player) {
   }
   return winner
 }
+const getWinner = function () {
+  // const moves = this.
+  let winner = 'noWinner'
+  if (this.cells[0] !== '' && this.cells[0] === this.cells[1] && this.cells[2]) {
+    winner = this.cells[0]
+  } else if (this.cells[3] !== '' && this.cells[3] === this.cells[4] && this.cells[5]) {
+    winner = this.cells[3]
+  } else if (this.cells[6] !== '' && this.cells[6] === this.cells[7] && this.cells[8]) {
+    winner = this.cells[6]
+  } else if (this.cells[0] !== '' && this.cells[0] === this.cells[3] && this.cells[6]) {
+    winner = this.cells[6]
+  } else if (this.cells[1] !== '' && this.cells[1] === this.cells[4] && this.cells[7]) {
+    winner = this.cells[1]
+  } else if (this.cells[2] !== '' && this.cells[2] === this.cells[5] && this.cells[8]) {
+    winner = this.cells[2]
+  } else if (this.cells[0] !== '' && this.cells[0] === this.cells[4] && this.cells[8]) {
+    winner = this.cells[0]
+  } else if (this.cells[2] !== '' && this.cells[2] === this.cells[4] && this.cells[6]) {
+    winner = this.cells[2]
+  } else if (this.cells.every(element => element !== '')) {
+    winner = 'drawGames'
+  }
+  return winner
+}
 
 const togglePlayer = function () {
   if (this.currentPlayer === 'x') {
@@ -62,18 +86,24 @@ const Player = function () {
   this.id = 0
   this.email = ''
 }
-const updateGame = function (index, gameOver) {
+const updateGame = function (index, cellValue) {
+  this.cells[index] = cellValue
+  const winner = this.getWinner()
+  if (winner === 'x' || winner === 'y' || winner === 'draw') {
+    this.over = true
+  }
   const update = {
     'game': {
       'cell': {
         'index': index,
-        'value': currentBoard.currentGame.currentPlayer
+        'value': cellValue
       },
-      'over': gameOver
+      'over': this.over
     }
   }
-  console.log('In updateGame with game id: ' + currentBoard.currentGame.id)
-  api.update(currentBoard.currentGame.id, update)
+  console.log('In updateGame with game id: ' + this.id)
+  api.update(this.id, update)
+  return winner
 }
 
 const getGame = function (gameId) {
@@ -87,21 +117,44 @@ const getGame = function (gameId) {
   }
 }
 
-const saveGame = function (name, email) {
+const getStatistics = function () {
   // #game-board > tbody > tr:nth-child(1) > td:nth-child(1)
   // #game-board > tbody > tr:nth-child(2) > td:nth-child(3)
   // #game-board > tbody > tr:nth-child(1)
-  console.log('Save Game')
-  const board = $('#game-board > tbody')
-  console.log('The board ', board[0].rows)
-
-  for (let i = 0; i < board[0].rows.length; i++) {
-    for (let j = 0; j < board[0].rows[i].children.length; j++) {
-      console.log('Cell: ' + i + ',' + j + 'has value:' + board[0].rows[i].children[j].textContent)
+  console.log('Get statistics')
+  if (currentBoard.allGames !== {}) {
+    this.totalGames = currentBoard.allGames.games.length
+    for (let i = 0; i < currentBoard.allGames.games.length; i++) {
+      const game = new GameFromGame(currentBoard.allGames.games[i])
+      if (game.over === true) {
+        this.completedGames += 1
+      } else {
+        this.incompleteGames += 1
+        continue
+      }
+      const winner = game.getWinner()
+      if (winner === 'playerX') {
+        this.xWon += 1
+      } else if (winner === 'playerY') {
+        this.yWon += 1
+      } else if (winner === 'draw') {
+        this.drawGames += 1
+      }
     }
+  } else {
+    // need to get boards
   }
 }
-
+const Games = function (games) {
+  this.games = games
+  this.totalGames = 0
+  this.completedGames = 0
+  this.incompleteGames = 0
+  this.drawGames = 0
+  this.xWon = 0
+  this.yWon = 0
+  this.getStatistics = getStatistics
+}
 const Game = function () {
   this.id = 0
   this.cells = ['', '', '', '', '', '', '', '', '']
@@ -113,6 +166,7 @@ const Game = function () {
   this.togglePlayer = togglePlayer
   this.checkForWinner = checkForWinner
   this.updateGame = updateGame
+  this.getWinner = getWinner
 }
 
 const GameFromGame = function (game) {
@@ -126,6 +180,7 @@ const GameFromGame = function (game) {
   this.togglePlayer = togglePlayer
   this.checkForWinner = checkForWinner
   this.updateGame = updateGame
+  this.getWinner = getWinner
 }
 
 const inistializeGame = function (data) {
@@ -167,10 +222,12 @@ module.exports = {
   inistializeGame,
   updateGameFromDom,
   updateGame,
-  saveGame,
+  getStatistics,
+  getWinner,
   checkForWinner,
   togglePlayer,
   Game,
   GameFromGame,
+  Games,
   getGame
 }

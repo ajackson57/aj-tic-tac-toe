@@ -2,7 +2,7 @@
 
 const storeGameBoard = {
   currentGame: {},
-  allGames: []
+  allGames: {}
 }
 
 module.exports = storeGameBoard
