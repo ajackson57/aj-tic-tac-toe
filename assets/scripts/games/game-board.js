@@ -133,9 +133,9 @@ const getStatistics = function () {
         continue
       }
       const winner = game.getWinner()
-      if (winner === 'playerX') {
+      if (winner === 'x') {
         this.xWon += 1
-      } else if (winner === 'playerY') {
+      } else if (winner === 'y') {
         this.yWon += 1
       } else if (winner === 'draw') {
         this.drawGames += 1
