@@ -55,19 +55,19 @@ const getWinner = function () {
   let winner = 'noWinner'
   if (this.cells[0] !== '' && this.cells[0] === this.cells[1] && this.cells[2]) {
     winner = this.cells[0]
-  } else if (this.cells[3] !== '' && this.cells[3] === this.cells[4] && this.cells[5]) {
+  } else if (this.cells[3] !== '' && this.cells[3] === this.cells[4] && this.cells[4] === this.cells[5]) {
     winner = this.cells[3]
-  } else if (this.cells[6] !== '' && this.cells[6] === this.cells[7] && this.cells[8]) {
+  } else if (this.cells[6] !== '' && this.cells[6] === this.cells[7] && this.cells[7] === this.cells[8]) {
     winner = this.cells[6]
-  } else if (this.cells[0] !== '' && this.cells[0] === this.cells[3] && this.cells[6]) {
-    winner = this.cells[6]
-  } else if (this.cells[1] !== '' && this.cells[1] === this.cells[4] && this.cells[7]) {
-    winner = this.cells[1]
-  } else if (this.cells[2] !== '' && this.cells[2] === this.cells[5] && this.cells[8]) {
-    winner = this.cells[2]
-  } else if (this.cells[0] !== '' && this.cells[0] === this.cells[4] && this.cells[8]) {
+  } else if (this.cells[0] !== '' && this.cells[0] === this.cells[3] && this.cells[3] === this.cells[6]) {
     winner = this.cells[0]
-  } else if (this.cells[2] !== '' && this.cells[2] === this.cells[4] && this.cells[6]) {
+  } else if (this.cells[1] !== '' && this.cells[1] === this.cells[4] && this.cells[4] === this.cells[7]) {
+    winner = this.cells[1]
+  } else if (this.cells[2] !== '' && this.cells[2] === this.cells[5] && this.cells[5] === this.cells[8]) {
+    winner = this.cells[2]
+  } else if (this.cells[0] !== '' && this.cells[0] === this.cells[4] && this.cells[4] === this.cells[8]) {
+    winner = this.cells[0]
+  } else if (this.cells[2] !== '' && this.cells[2] === this.cells[4] && this.cells[4] === this.cells[6]) {
     winner = this.cells[2]
   } else if (this.cells.every(element => element !== '')) {
     winner = 'drawGames'
@@ -135,8 +135,8 @@ const getStatistics = function () {
       const winner = game.getWinner()
       if (winner === 'x') {
         this.xWon += 1
-      } else if (winner === 'y') {
-        this.yWon += 1
+      } else if (winner === 'o') {
+        this.oWon += 1
       } else if (winner === 'draw') {
         this.drawGames += 1
       }
@@ -152,7 +152,7 @@ const Games = function (games) {
   this.incompleteGames = 0
   this.drawGames = 0
   this.xWon = 0
-  this.yWon = 0
+  this.oWon = 0
   this.getStatistics = getStatistics
 }
 const Game = function () {
@@ -160,7 +160,7 @@ const Game = function () {
   this.cells = ['', '', '', '', '', '', '', '', '']
   this.over = false
   this.player_x = new Player()
-  this.player_y = null
+  this.player_o = null
   // this.addCell = addCell
   this.currentPlayer = 'x'
   this.togglePlayer = togglePlayer
@@ -174,7 +174,7 @@ const GameFromGame = function (game) {
   this.cells = game.cells
   this.over = game.over
   this.player_x = game.player_x
-  this.player_y = game.player_y
+  this.player_o = game.player_o
   // this.addCell = addCell
   this.currentPlayer = 'x'
   this.togglePlayer = togglePlayer

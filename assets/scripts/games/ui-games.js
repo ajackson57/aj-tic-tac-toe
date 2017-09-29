@@ -57,7 +57,7 @@ const displayStatistics = function () {
   '<br/>Incomplete Games: ' + games.incompleteGames +
   '<br/>Games Played to Draw: ' + games.drawGames +
   '<br/>Games won by playerX: ' + games.xWon +
-  '<br/>Games won by playerY: ' + games.yWon)
+  '<br/>Games won by playerO: ' + games.oWon)
 }
 
 const moveFeedback = function (feedback) {
