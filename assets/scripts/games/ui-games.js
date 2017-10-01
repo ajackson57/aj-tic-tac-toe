@@ -4,7 +4,7 @@ const currentBoard = require('../store-game-board')
 const gameBoard = require('./game-board')
 
 const getGamesSuccess = function (data) {
-  console.log('Data from get games :', data)
+  ('Data from get games :', data)
   $('#content').text('Get games succesfull')
   currentBoard.allGames = new gameBoard.Games(data.games)
   currentBoard.allGames.getStatistics()
@@ -16,7 +16,7 @@ const getGamesFailure = function (error) {
   $('#content').text('Error on get games: ' + error)
 }
 const newGameSuccess = function (data) {
-  console.log('Data from new game :', data)
+  ('Data from new game :', data)
   $('#content').text('New game succesfull')
   gameBoard.inistializeGame(data)
 }
@@ -25,7 +25,7 @@ const newGameFailure = function (error) {
   $('#content').text('Error on new game: ' + error)
 }
 const getGameSuccess = function (data) {
-  console.log('Data from new game :', data)
+  ('Data from new game :', data)
   $('#content').text('Get game succesfull')
   gameBoard.inistializeGame(data)
 }
@@ -34,7 +34,7 @@ const getGameFailure = function (error) {
   $('#content').text('Error on get game: ' + error)
 }
 const saveGameSuccess = function (data) {
-  console.log('Data from save game :', data)
+  ('Data from save game :', data)
   $('#content').text('Save game succesfull')
 }
 
@@ -43,7 +43,7 @@ const saveGameFailure = function (error) {
   $('#content').text('Error on save game: ' + error)
 }
 const getStatisticsSuccess = function (data) {
-  console.log('Data from save game :', data)
+  ('Data from save game :', data)
   $('#content').text('Save game succesfull')
 }
 
@@ -66,6 +66,14 @@ const moveFeedback = function (feedback) {
   $('#content').text(feedback)
 }
 
+const hideGameContent = function () {
+  $('#game-board').hide()
+  $('#get-statistics').hide()
+  $('#get-games').hide()
+  $('#get-game').hide()
+  $('#new-game').hide()
+}
+
 module.exports = {
   getGamesSuccess,
   getGamesFailure,
@@ -78,5 +86,6 @@ module.exports = {
   getStatisticsSuccess,
   getStatisticsFailure,
   displayStatistics,
-  moveFeedback
+  moveFeedback,
+  hideGameContent
 }

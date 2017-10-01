@@ -2,54 +2,7 @@
 
 const currentBoard = require('../store-game-board')
 const api = require('./api-games')
-// const Cell = function (player, row, column) {
-//   this.player = player
-//   this.row = row
-//   this.column = column
-// }
 
-// const addCell = function (player, row, column) {
-//   this._cells.push(new Cell(player, row, column))
-// }
-const checkForWinner = function (player) {
-  console.log()
-  let winner = 'No Winner'
-  const board = $('#game-board > tbody')
-  if (board[0].rows[0].children[0].textContent === player &&
-      board[0].rows[0].children[1].textContent === player &&
-      board[0].rows[0].children[2].textContent === player) {
-    winner = player
-  } else if (board[0].rows[1].children[0].textContent === player &&
-      board[0].rows[1].children[1].textContent === player &&
-      board[0].rows[1].children[2].textContent === player) {
-    winner = player
-  } else if (board[0].rows[2].children[0].textContent === player &&
-      board[0].rows[2].children[1].textContent === player &&
-      board[0].rows[2].children[2].textContent === player) {
-    winner = player
-  } else if (board[0].rows[0].children[0].textContent === player &&
-      board[0].rows[1].children[0].textContent === player &&
-      board[0].rows[2].children[0].textContent === player) {
-    return player
-  } else if (board[0].rows[0].children[1].textContent === player &&
-      board[0].rows[1].children[1].textContent === player &&
-      board[0].rows[2].children[1].textContent === player) {
-    winner = player
-  } else if (board[0].rows[0].children[2].textContent === player &&
-      board[0].rows[1].children[2].textContent === player &&
-      board[0].rows[2].children[2].textContent === player) {
-    winner = player
-  } else if (board[0].rows[0].children[0].textContent === player &&
-      board[0].rows[1].children[1].textContent === player &&
-      board[0].rows[2].children[2].textContent === player) {
-    winner = player
-  } else if (board[0].rows[0].children[2].textContent === player &&
-      board[0].rows[1].children[1].textContent === player &&
-      board[0].rows[2].children[0].textContent === player) {
-    winner = player
-  }
-  return winner
-}
 const getWinner = function () {
   // const moves = this.
   let winner = 'noWinner'
@@ -101,7 +54,6 @@ const updateGame = function (index, cellValue) {
       'over': this.over
     }
   }
-  console.log('In updateGame with game id: ' + this.id)
   api.update(this.id, update)
   return winner
 }
@@ -109,8 +61,6 @@ const updateGame = function (index, cellValue) {
 const getGame = function (gameId) {
   currentBoard.currentGame = currentBoard.allGames.games.find((game) => game.id === gameId)
   if (currentBoard.currentGame !== {}) {
-    console.log('Get game found game: ', gameId)
-    console.log('Current game: ', currentBoard.currentGame)
     return true
   } else {
     return false
@@ -121,7 +71,7 @@ const getStatistics = function () {
   // #game-board > tbody > tr:nth-child(1) > td:nth-child(1)
   // #game-board > tbody > tr:nth-child(2) > td:nth-child(3)
   // #game-board > tbody > tr:nth-child(1)
-  console.log('Get statistics')
+  ('Get statistics')
   if (currentBoard.allGames !== {}) {
     this.totalGames = currentBoard.allGames.games.length
     for (let i = 0; i < currentBoard.allGames.games.length; i++) {
@@ -164,7 +114,6 @@ const Game = function () {
   // this.addCell = addCell
   this.currentPlayer = 'x'
   this.togglePlayer = togglePlayer
-  this.checkForWinner = checkForWinner
   this.updateGame = updateGame
   this.getWinner = getWinner
 }
@@ -178,25 +127,20 @@ const GameFromGame = function (game) {
   // this.addCell = addCell
   this.currentPlayer = 'x'
   this.togglePlayer = togglePlayer
-  this.checkForWinner = checkForWinner
   this.updateGame = updateGame
   this.getWinner = getWinner
 }
 
 const inistializeGame = function (data) {
-  console.log('In initializeGame with data: ' + data)
+  ('In initializeGame with data: ' + data)
   currentBoard.currentGame = new GameFromGame(data.game)
-  console.log('In initializeGame with game id: ' + currentBoard.currentGame.id)
-  // #game-board > tbody > tr:nth-child(1) > td:nth-child(1)
-  // #game-board > tbody > tr:nth-child(2) > td:nth-child(3)
-  // #game-board > tbody > tr:nth-child(1)
   const board = $('#game-board > tbody')
-  // console.log('The board ', board[0].rows)
-  //  console.log('Intialize Game')
+  // ('The board ', board[0].rows)
+  //  ('Intialize Game')
   let i = 0
   for (let rowIndex = 0; rowIndex < board[0].rows.length; rowIndex++) {
     for (let colIndex = 0; colIndex < board[0].rows[rowIndex].children.length; colIndex++) {
-       // console.log('Cell: ' + i + ',' + j + 'has value:' + board[0].rows[i].children[j].textContent)
+       // ('Cell: ' + i + ',' + j + 'has value:' + board[0].rows[i].children[j].textContent)
       board[0].rows[rowIndex].children[colIndex].textContent = currentBoard.currentGame.cells[i++]
     }
   }
@@ -207,12 +151,12 @@ const updateGameFromDom = function () {
   // #game-board > tbody > tr:nth-child(2) > td:nth-child(3)
   // #game-board > tbody > tr:nth-child(1)
   const board = $('#game-board > tbody')
-  // console.log('The board ', board[0].rows)
-  //  console.log('Intialize Game')
+  // ('The board ', board[0].rows)
+  //  ('Intialize Game')
   let i = 0
   for (let rowIndex = 0; rowIndex < board[0].rows.length; rowIndex++) {
     for (let colIndex = 0; colIndex < board[0].rows[rowIndex].children.length; colIndex++) {
-       // console.log('Cell: ' + i + ',' + j + 'has value:' + board[0].rows[i].children[j].textContent)
+       // ('Cell: ' + i + ',' + j + 'has value:' + board[0].rows[i].children[j].textContent)
       currentBoard.currentGame.cells[i++] = board[0].rows[rowIndex].children[colIndex].textContent
     }
   }
@@ -224,7 +168,6 @@ module.exports = {
   updateGame,
   getStatistics,
   getWinner,
-  checkForWinner,
   togglePlayer,
   Game,
   GameFromGame,

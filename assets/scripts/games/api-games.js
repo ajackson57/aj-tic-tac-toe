@@ -54,12 +54,12 @@ const update = function (gameId, data) {
 //   // #game-board > tbody > tr:nth-child(1) > td:nth-child(1)
 //   // #game-board > tbody > tr:nth-child(2) > td:nth-child(3)
 //   // #game-board > tbody > tr:nth-child(1)
-//   console.log('Save Game')
+//   ('Save Game')
 //   const board = $('#game-board > tbody')
-//   console.log('The board ', board[0].rows)
+//   ('The board ', board[0].rows)
 //   for (let i = 0; i < board[0].rows.length; i++) {
 //     for (let j = 0; j < board[0].rows[i].children.length; j++) {
-//       console.log('Cell: ' + i + ',' + j + 'has value:' + board[0].rows[i].children[j].textContent)
+//       ('Cell: ' + i + ',' + j + 'has value:' + board[0].rows[i].children[j].textContent)
 //     }
 //   }
 // }

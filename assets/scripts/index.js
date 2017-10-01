@@ -2,6 +2,8 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
+const uiGame = require('./games/ui-games')
+const uiAuth = require('./auth/ui-auth')
 
 $(() => {
   setAPIOrigin(location, config)
@@ -25,4 +27,6 @@ $(() => {
   // game.inistializeGame(game.Game())
   authEvents.addHandlers()
   gameEvents.addHandlers()
+  uiAuth.hideAuthContent()
+  uiGame.hideGameContent()
 })

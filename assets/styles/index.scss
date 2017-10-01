@@ -7,16 +7,16 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   // border-collapse: separate;
 }
 
-.grid-table {
-  display: table;
-  margin: 0 auto;
-  // width: 100%;
-  // border-collapse: separate;
-}
-
 .cell {
   // border-collapse: separate;
   border-style: solid;
   empty-cells: show;
   padding: 50px;
+}
+
+.grid-table {
+  border-collapse: collapse;
+  border-style: hidden;
+  display: table;
+  margin: 0 auto;
 }

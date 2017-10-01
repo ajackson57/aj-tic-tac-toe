@@ -8,7 +8,7 @@ const ui = require('./ui-auth')
 const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  // console.log(data)
+  // (data)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
@@ -16,7 +16,6 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  console.log(data)
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
@@ -24,7 +23,6 @@ const onSignIn = function (event) {
 const onChangePassword = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  console.log(data)
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
@@ -32,10 +30,25 @@ const onChangePassword = function (event) {
 const onSignOut = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  console.log(data)
   api.signOut(data)
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
+}
+const onSignInMenu = function (event) {
+  event.preventDefault()
+  $('#sign-in').show()
+}
+const onSignOutMenu = function (event) {
+  event.preventDefault()
+  $('#sign-out').trigger('submit')
+}
+const onSignUpMenu = function (event) {
+  event.preventDefault()
+  $('#sign-up').show()
+}
+const onChangePasswordMenu = function (event) {
+  event.preventDefault()
+  $('#change-password').show()
 }
 
 const addHandlers = function () {
@@ -43,6 +56,10 @@ const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
+  $('#sign-in-menu').on('click', onSignInMenu)
+  $('#sign-out-menu').on('click', onSignOutMenu)
+  $('#sign-up-menu').on('click', onSignUpMenu)
+  $('#change-password-menu').on('click', onChangePasswordMenu)
 }
 
 module.exports = {
