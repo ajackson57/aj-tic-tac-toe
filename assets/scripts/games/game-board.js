@@ -89,7 +89,7 @@ const Player = function () {
 const updateGame = function (index, cellValue) {
   this.cells[index] = cellValue
   const winner = this.getWinner()
-  if (winner === 'x' || winner === 'y' || winner === 'draw') {
+  if (winner === 'x' || winner === 'o' || winner === 'draw') {
     this.over = true
   }
   const update = {

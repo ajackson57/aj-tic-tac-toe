@@ -6,6 +6,7 @@
 const game = require('../store-game-board')
 const api = require('./api-games')
 const ui = require('./ui-games')
+const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
 // const currentBoard = require('../store-game-board')
 // const store = require('../store')
@@ -16,9 +17,16 @@ const onCellClick = function (event) {
   // console.log('Cell event: ', event)
   // console.log('Cell index:', event.target.cellIndex)
   // console.log('Row index:', event.target.parentElement.rowIndex)
-  // console.log('Cell value:', event.target.value)
-  if (game.currentGame.over) {
-    $('#content').text('Game over please create a new game!')
+  // console.log('Cell value:', event.target.value
+
+  if (jQuery.isEmptyObject(store.user)) {
+    $('#content').text('Please sign in.')
+    return
+  } else if (jQuery.isEmptyObject(game.currentGame)) {
+    $('#content').text('Please create a new game!')
+    return
+  } else if (game.currentGame.over) {
+    $('#content').text('Game over, please create a new game!')
     return
   }
   const rowIndex = event.target.parentElement.rowIndex
@@ -59,15 +67,22 @@ const onCellClick = function (event) {
 
 const onGetStatistics = function (event) {
   event.preventDefault()
+  if (jQuery.isEmptyObject(store.user)) {
+    $('#content').text('Please sign in.')
+    return
+  }
   console.log('Caught get statistics event')
-  game.allGames.getStatistics()
-  ui.displayStatistics()
+  $('#get-games').trigger('click')
   // api.saveGame()
   //  .then(ui.getStatisticsSuccess)
   //  .catch(ui.getStatisticsFailure)
 }
 const onGetGames = function (event) {
   event.preventDefault()
+  if (jQuery.isEmptyObject(store.user)) {
+    $('#content').text('Please sign in.')
+    return
+  }
   console.log('Caught get games event')
   api.index()
     .then(ui.getGamesSuccess)
@@ -75,6 +90,10 @@ const onGetGames = function (event) {
 }
 const onNewGame = function (event) {
   event.preventDefault()
+  if (jQuery.isEmptyObject(store.user)) {
+    $('#content').text('Please sign in.')
+    return
+  }
   console.log('Caught new game event')
   api.create()
     .then(ui.newGameSuccess)
@@ -82,6 +101,10 @@ const onNewGame = function (event) {
 }
 const onGetGame = function (event) {
   event.preventDefault()
+  if (jQuery.isEmptyObject(store.user)) {
+    $('#content').text('Please sign in.')
+    return
+  }
   const gameForm = getFormFields(event.target)
   console.log('gameForm is ', gameForm)
   // get the necessary information out of that object
@@ -101,5 +124,6 @@ const addHandlers = function () {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onGetGames
 }

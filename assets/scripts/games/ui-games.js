@@ -7,6 +7,8 @@ const getGamesSuccess = function (data) {
   console.log('Data from get games :', data)
   $('#content').text('Get games succesfull')
   currentBoard.allGames = new gameBoard.Games(data.games)
+  currentBoard.allGames.getStatistics()
+  displayStatistics()
 }
 
 const getGamesFailure = function (error) {
