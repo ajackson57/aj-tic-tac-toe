@@ -1,17 +1,18 @@
-##Introduction
+## Introduction
 This is a simple tic-tac-toe game developed as a project for a web front-end
-coding school project. It currently only supports one users interactions, you
+coding school project. It currently only supports one user's interactions, you
 are playing against yourself. Please see the instructions below.
 
-##Instructions
+## Instructions
 [Select the following URL to get started] (https://git.generalassemb.ly/pages/ajackson57/aj-tic-tac-toe/)
 
-##Technologies used.
+## Technologies used.
 
-##The Devlopmnet Story
+## The Devlopmnet Story
  -- development process
  -- problem-solving strategy.
 
-##Current Issues to be resolved in the future
+## Current Issues to be resolved in the future
 
-##Wireframes and User Stories.
+## Wireframes and User Stories.
+[Wire Frames] (https://git.generalassemb.ly/ajackson57/aj-tic-tac-toe/blob/master/wire-frames/tic-tac-toe.pdf)
