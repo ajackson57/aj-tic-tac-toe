@@ -18,8 +18,8 @@ const signInSuccess = function (data) {
   $('#sign-in').hide()
   $('#game-board').show()
   $('#get-statistics').show()
-  $('#get-games').show()
-  $('#get-game').show()
+  // $('#get-games').show()
+  // $('#get-game').show()
   $('#new-game').show()
   $('#sign-out-menu').show()
   $('#change-password-menu').show()
@@ -33,6 +33,7 @@ const signInFailure = function (error) {
 const changePasswordSuccess = function (data) {
   ('Data from CPW :', data)
   $('#content').text('Password changed succesfully')
+  $('#change-password').hide()
 }
 
 const changePasswordFailure = function (error) {

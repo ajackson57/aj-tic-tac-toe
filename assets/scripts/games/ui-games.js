@@ -8,9 +8,9 @@ const getGamesSuccess = function (data) {
   currentBoard.allGames = new gameBoard.Games(data.games)
   currentBoard.allGames.getStatistics()
   displayStatistics()
-  displayGames()
-  $('#games-list-heading').show()
-  $('#satus-of-games').show()
+  // displayGames()
+  // $('#games-list-heading').show()
+  // $('#satus-of-games').show()
 }
 
 const getGamesFailure = function (error) {

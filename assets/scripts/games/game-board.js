@@ -23,7 +23,7 @@ const getWinner = function () {
   } else if (this.cells[2] !== '' && this.cells[2] === this.cells[4] && this.cells[4] === this.cells[6]) {
     winner = this.cells[2]
   } else if (this.cells.every(element => element !== '')) {
-    winner = 'drawGames'
+    winner = 'draw'
   }
   return winner
 }

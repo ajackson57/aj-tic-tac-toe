@@ -56,7 +56,6 @@ const onGetGames = function (event) {
     $('#content').text('Please sign in.')
     return
   }
-  ('Caught get games event')
   api.index()
     .then(ui.getGamesSuccess)
     .catch(ui.getGamesFailure)
@@ -78,7 +77,7 @@ const onGetGame = function (event) {
     return
   }
   const gameForm = getFormFields(event.target)
-  // get the necessary information out of that object
+  event.preventDefault()
   const gameId = gameForm.game.id
   api.show(gameId)
     .then(ui.getGameSuccess)
@@ -90,7 +89,7 @@ const addHandlers = function () {
   $('#get-statistics').on('click', onGetStatistics)
   $('#get-games').on('click', onGetGames)
   $('#new-game').on('click', onNewGame)
-  $('#get-game').on('submit', onGetGame)
+  // $('#get-game').on('submit', onGetGame)
 }
 
 module.exports = {
