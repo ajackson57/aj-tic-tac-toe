@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic-Tac-Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid">
+      <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Tic-Tac-Toe</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li id="sign-up-menu"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li id="sign-in-menu"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+      <li id="sign-out-menu"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+      <li id="change-password-menu"><a href="#"><span class="glyphicon glyphicon-wrench"></span> Change Password</a></li>
+    </ul>
+  </div>
+</nav>
+      <section id="content"></section>
+      <section id="games-list-heading" class="list-heading">Game-ID      Game-Over</section>
+      <section id="satus-of-games" class="list-of-games"></section>
+      <div class="grid-space">
+        <table class="grid-table" id="game-board">
+          <tr>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+          </tr>
+          <tr>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+          </tr>
+          <tr>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+          </tr>
+        </table>
+    </div >
+    <form>
+      <div class="form-group">
+        <button id="new-game" type="button" class="btn btn-primary">New Game</button>
+      </div>
+    <div class="form-group">
+      <button id="get-statistics" type="button" class="btn btn-primary">Display Statistics</button>
+    </div>
+    <div class="form-group">
+      <button id="get-games" type="button" class="btn btn-primary">Get Games</button>
+    </div>
+    <div class="form-group" id="get-game">
+        <button type="submit" class="btn btn-primary">Play Game ID(?)</button>
+        <input name="game[id]" type="text">
+    </div>
+  </form>
+    <form id="sign-up">
+      <fieldset>
+        <legend>Sign up!</legend>
+        <input name="credentials[email]" type="text" placeholder="Enter Email">
+        <input name="credentials[password]" type="password" placeholder="Enter Password">
+        <input name="credentials[password_confirmation]" type="password" placeholder="Enter Password Confirmation">
+        <input type="submit" name="submit" value="Sign up!">
+      </fieldset>
+    </form>
+    <form id="sign-in">
+      <fieldset>
+        <legend>Sign in!</legend>
+        <input name="credentials[email]" type="text" placeholder="Enter Email">
+        <input name="credentials[password]" type="password" placeholder="Enter Password">
+        <input type="submit" name="submit" value="Sign in!">
+      </fieldset>
+    </form>
+    <form id="change-password">
+      <fieldset>
+        <legend>Change password!</legend>
+        <input name="passwords[old]" type="password" placeholder="Enter old password">
+        <input name="passwords[new]" type="password" placeholder="Enter new password">
+        <input type="submit" name="submit" value="Change Password!">
+      </fieldset>
+    </form>
+    <form id="sign-out">
+      <fieldset>
+        <legend>Sign Out!</legend>
+        <input type="submit" name="submit" value="Sign Out!">
+      </fieldset>
+    </form>
+    </body>
+</html>
