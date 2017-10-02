@@ -5,17 +5,14 @@ const uiGames = require('../games/ui-games')
 // const gameEvents = require('../games/events-games')
 
 const signUpSuccess = function (data) {
-  (data)
   $('#content').text('Sign up was succesfull')
   $('#sign-up').hide()
 }
 
 const signUpFailure = function (error) {
-  console.error(error)
-  $('#content').text('Eror on sign up')
+  $('#content').text('Eror on sign up: ', error)
 }
 const signInSuccess = function (data) {
-  ('Data from SIS :', data)
   store.user = data.user
   $('#content').text('Signed in succesfully')
   $('#sign-in').hide()
@@ -31,8 +28,7 @@ const signInSuccess = function (data) {
 }
 
 const signInFailure = function (error) {
-  console.error(error)
-  $('#content').text('Error on sign-in')
+  $('#content').text('Error on sign-in: ', error)
 }
 const changePasswordSuccess = function (data) {
   ('Data from CPW :', data)
@@ -40,11 +36,9 @@ const changePasswordSuccess = function (data) {
 }
 
 const changePasswordFailure = function (error) {
-  console.error(error)
-  $('#content').text('Error on password change')
+  $('#content').text('Error on password change: ', error)
 }
 const signOutSuccess = function (data) {
-  ('Data from SOS :', data)
   store.user = {}
   $('#content').text('Signed out succesfully')
   hideAuthContent()
@@ -54,8 +48,7 @@ const signOutSuccess = function (data) {
 }
 
 const signOutFailure = function (error) {
-  console.error(error)
-  $('#content').text('Error sign out')
+  $('#content').text('Error sign out: ', error)
 }
 const hideAuthContent = function () {
   $('#sign-up').hide()

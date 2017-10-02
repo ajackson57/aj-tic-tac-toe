@@ -8,7 +8,15 @@ const ui = require('./ui-auth')
 const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  // (data)
+  if (data.credentials.password === '') {
+    $('#content').text('Passwords cannot be blank')
+    return
+  } else if (data.credentials.password_confirmation === '') {
+    data.credentials.password_confirmation = data.credentials.password
+  } else if (data.credentials.password_confirmation !== data.credentials.password) {
+    $('#content').text('Passwords must match')
+    return
+  }
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
