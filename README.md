@@ -27,6 +27,10 @@ coding school project. It currently only supports one user's interactions, you a
 
 ## Current Issues to be resolved in the future
 - **Future Enhancements**
+- I have have implemented a feature to get and display the Ids and over status
+  of games. The user can then select a game and continue playing it. But I ran
+  some issues ith spurious events causing the display to be cleared. I need more
+  time to debug the issues. I removed these features for now.
 - Going forward I can see adding features such as dual player play and offline play support.
 
 ## Wireframes and User Stories.
